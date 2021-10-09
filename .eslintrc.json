@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }

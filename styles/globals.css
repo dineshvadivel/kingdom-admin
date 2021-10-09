@@ -2,9 +2,13 @@ html,
 body {
   padding: 0;
   margin: 0;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+  width: 100%;
 }
+
 
 a {
   color: inherit;
@@ -13,4 +17,205 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.lay{
+  width: 100%;
+  height: 100vh;
+}
+
+.bg{
+  /* background: url('/images/bg_image.png') no-repeat;
+  background-size:cover; */
+  background: url(/images/bg_desktop.png) no-repeat center;
+  background-size:cover;
+ 
+}
+.wd-450{
+  width: 450px !important;
+}
+
+.custom-field{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  box-shadow: inset 0px 0px 0px 0px red;
+  border: none;
+  box-shadow: none;
+    background: url('/images/inputBar.png') no-repeat right center !important;
+    height:56px;
+    width:345px;
+    padding:10px 40px;
+    color: #fff;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(228, 228, 228);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(228, 228, 228);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgb(228, 228, 228);
+}
+input:-webkit-autofill { 
+  -webkit-background-clip: text;
+}
+
+.ht-150{
+  min-height: 150px;
+}
+
+.ht-100{
+  min-height: 100px;
+}
+.cSelect{
+  width: 90%;
+  margin: auto;
+}
+
+.custom-btn{
+  background: url('/images/login_btn.png') no-repeat  center !important;
+  height:74px;
+  width:145px;
+  border: none;
+}
+Button{
+  outline:none;
+}
+Button::-moz-focus-inner {
+  border: 0;
+}
+*:focus {
+  outline: 0 !important;
+}
+
+Button {
+  outline: none !important;
+  box-shadow: none !important;
+} 
+
+.main{
+  text-align: center;
+  justify-content: center;
+}
+.min-ht{
+  min-height: 960px;
+}
+
+.topBar{
+  width: 100%;
+  height: 50px;
+}
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+.create-game{
+  background: url('/images/create_game.png') no-repeat  center !important;
+  height:81px;
+  width:207px;
+  border: none;
+  display: inline-block;
+}
+
+.new-game{
+  background: url('/images/new_game.png') no-repeat  center !important;
+  height:81px;
+  width:207px;
+  border: none;
+  display: inline-block;
+}
+
+.listHolder{
+  background-color: rgba(0,0,0,0.5);
+  width: 96%;
+  margin: auto;
+  min-height: 600px;
+}
+
+.card{
+  padding: 20px 10px;
+  height: 70px;
+  color: #000;
+}
+
+.btn-white{
+
+}
+
+.btn-white:hover {
+  color: rgb(247, 0, 136);
+  background-color: #fff;
+  border-color: #fff;
+}
+.btn-white:hover {
+  color: rgb(228, 228, 228);
+}
+
+.btn-white:hover {
+  color: rgb(247, 0, 136);
+  background-color: #fff;
+  border-color: #fff;
+}
+.btn-white {
+  color: rgb(247, 0, 136);
+  background-color: #fff;
+  border-color: #fff;
+  -webkit-box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%);
+}
+
+.back{
+  background: url('/images/back.png') no-repeat  center !important;
+  height:45px;
+  width:45px;
+  border: none;
+  display: inline-block;
+  
+}
+.next{
+  background: url('/images/nextRound.png') no-repeat  center !important;
+  height:45px;
+  width:45px;
+  border: none;
+  display: inline-block;
+}
+
+.stbtn{
+  background: url('/images/start.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+
+.cmpbtn{
+  background: url('/images/endgame.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+
+.logbtn{
+  background: url('/images/Logout.png') no-repeat  center !important;
+  height:45px;
+  width:45px;
+  border: none;
+  display: inline-block;
+}
+.blackOp{
+  background: rgba(0,0,0,0.5);
+}
+
+.txt-sm{
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.blk{
+  height: 25px;
 }
