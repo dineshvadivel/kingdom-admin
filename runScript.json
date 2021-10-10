@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "kingdom-admin",
+      "script": "npm start"
+    }
+  ]
+}
