@@ -219,3 +219,11 @@ input:focus, textarea:focus, select:focus{
 .blk{
   height: 25px;
 }
+
+.link{
+  color:rgb(247, 0, 136)
+}
+a:hover{
+  cursor: pointer;
+  color:rgb(255, 255, 255)
+}

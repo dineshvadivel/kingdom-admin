@@ -21,8 +21,8 @@ export default function Details(props) {
         console.log(props)
 
         socket.on('trigger', (text) => {
-            if(text.gameId)
-            mutate();
+            if (text.gameId)
+                mutate();
             lm();
             sm();
         });
@@ -94,7 +94,7 @@ export default function Details(props) {
         }
     }
 
-    
+
 
     const leaderBoard = () => {
         if (gameInfo) {
@@ -108,7 +108,7 @@ export default function Details(props) {
                             </div>
 
                             <div className="col">
-                            {item.totalWealth}
+                                {item.totalWealth}
                             </div>
                         </div></div>
                 )
@@ -142,7 +142,14 @@ export default function Details(props) {
                             </div>
                         </div>
                         <h3 className="mt-3">Game Detail</h3>
-                        {data && data.currentRound <= data.totalRound ? <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4">
+                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4" style={{padding:'10px'}}>
+                            <div className="col"> <span>Game Url</span><br />
+                                <a href={`https://kingdom.higglerslab.com/${id}`} target="_blank" className="text-sm link">{`https://kingdom.higglerslab.com/${id}`}</a>
+                            </div>
+                        </div>
+
+                        {data && data.currentRound <= data.totalRound ? 
+                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4">
                             <div className="row ">
                                 <div className="col">
                                     <div className="row ">
@@ -171,7 +178,7 @@ export default function Details(props) {
                                         }}></a>
                                     </div>
                                 </div> : null}
-                            {data && data.status ==='STARTED' && data.currentRound <= data.totalRound &&  sInfo.count == data.participants.length?
+                            {data && data.status === 'STARTED' && data.currentRound <= data.totalRound && sInfo && sInfo.count == data.participants.length ?
                                 <div className="row ">
                                     <div className="col">
                                         <a className="btn btn-primary cmpbtn" onClick={(e) => {
