@@ -129,8 +129,8 @@ export default function Details(props) {
 
     return (
         <div className="App lay" style={{ width: width, height: height }}>
-            <div className="container-md  text-white" >
-                <div className="Background">
+            <div className="Background">
+                <div className="container-md  text-white" style={{ padding: 0 }}>
                     <Layout className="">
                         <div className="topBar">
                             <div className="row ">
@@ -142,52 +142,52 @@ export default function Details(props) {
                             </div>
                         </div>
                         <h3 className="mt-3">Game Detail</h3>
-                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4" style={{padding:'10px'}}>
+                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4" style={{ padding: '10px' }}>
                             <div className="col"> <span>Game Url</span><br />
                                 <a href={`https://kingdom.higglerslab.com/${id}`} target="_blank" className="text-sm link">{`https://kingdom.higglerslab.com/${id}`}</a>
                             </div>
                         </div>
 
-                        {data && data.currentRound <= data.totalRound ? 
-                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4">
-                            <div className="row ">
-                                <div className="col">
-                                    <div className="row ">
-                                        <div className="col-12 blk">Round</div>
-                                        <div className="col-12 mt-2">{data.currentRound}/{data.totalRound}</div>
-                                    </div>
-                                </div>
-                                <div className="col">
-                                    <div className="row ">
-                                        <div className="col-12 blk">Players</div>
-                                        <div className="col-12 mt-2">{data.participants.length}</div>
-                                    </div>
-                                </div>
-                                <div className="col">
-                                    <div className="row ">
-                                        <div className="col-12  blk txt-sm">Round Completion</div>
-                                        {sInfo ? <div className="col-12 mt-2">{sInfo.count}/{data.participants.length}</div> : <div className="col-12 mt-2">0</div>}
-                                    </div>
-                                </div>
-                            </div>
-                            {data && data.status === 'CREATED' ?
-                                <div className="row mt-1">
-                                    <div className="col">
-                                        <a className="btn btn-primary stbtn" onClick={(e) => {
-                                            startGame()
-                                        }}></a>
-                                    </div>
-                                </div> : null}
-                            {data && data.status === 'STARTED' && data.currentRound <= data.totalRound && sInfo && sInfo.count == data.participants.length ?
+                        {data && data.currentRound <= data.totalRound ?
+                            <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4">
                                 <div className="row ">
                                     <div className="col">
-                                        <a className="btn btn-primary cmpbtn" onClick={(e) => {
-                                            completeGame()
-                                        }}></a>
+                                        <div className="row ">
+                                            <div className="col-12 blk">Round</div>
+                                            <div className="col-12 mt-2">{data.currentRound}/{data.totalRound}</div>
+                                        </div>
                                     </div>
-                                </div> : null}
+                                    <div className="col">
+                                        <div className="row ">
+                                            <div className="col-12 blk">Players</div>
+                                            <div className="col-12 mt-2">{data.participants.length}</div>
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <div className="row ">
+                                            <div className="col-12  blk txt-sm">Round Completion</div>
+                                            {sInfo ? <div className="col-12 mt-2">{sInfo.count}/{data.participants.length}</div> : <div className="col-12 mt-2">0</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                {data && data.status === 'CREATED' ?
+                                    <div className="row mt-1">
+                                        <div className="col">
+                                            <a className="btn btn-primary stbtn" onClick={(e) => {
+                                                startGame()
+                                            }}></a>
+                                        </div>
+                                    </div> : null}
+                                {data && data.status === 'STARTED' && data.currentRound <= data.totalRound && sInfo && sInfo.count == data.participants.length ?
+                                    <div className="row ">
+                                        <div className="col">
+                                            <a className="btn btn-primary cmpbtn" onClick={(e) => {
+                                                completeGame()
+                                            }}></a>
+                                        </div>
+                                    </div> : null}
 
-                        </div> :
+                            </div> :
                             null}
                         <h3 className="mt-3">LeaderBoard</h3>
                         {leaderBoard()}
