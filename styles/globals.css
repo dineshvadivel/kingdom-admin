@@ -250,3 +250,14 @@ a:hover{
   border: none;
   display: inline-block;
 }
+
+.App {
+  background: url(/images/castle.png),url(/images/mountain.png),url(/images/sky.png);
+  background-repeat: no-repeat;
+  background-position: 100% 100%,bottom,100% 100%;
+  background-size: contain,100%,cover;
+}
+.App {
+  height: 100vh;
+  overflow: auto;
+}

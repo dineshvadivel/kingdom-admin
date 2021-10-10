@@ -40,8 +40,8 @@ export default function Home() {
     }
   };
   return (
-    <div className="bg lay" style={{ width: width, height: height }}>
-      <div className="container-md wd-450 text-white">
+    <div className="App lay" style={{ width: width, height: height }}>
+      <div className="container-md text-white">
         <main className="">
           <Layout className="">
             <div className="topBar mb-3">

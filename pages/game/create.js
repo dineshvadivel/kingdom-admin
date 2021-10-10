@@ -45,8 +45,8 @@ export default function Create(props) {
 
 
   return (
-    <div className="bg lay" style={{ width: width, height: height }}>
-      <div className="container-md wd-450 text-white">
+    <div className="App lay" style={{ width: width, height: height }}>
+      <div className="container-md text-white">
         <div className="main">
           <Layout className="">
             <div className="topBar">
