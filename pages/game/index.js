@@ -61,7 +61,7 @@ export default function Game(props) {
           <Layout className="">
             <div className="topBar">
               <div className="row ">
-                <div className="col"><a className="btn btn-white btn-sm logbtn"></a></div>
+                <div className="col"><Link href="/"><a className="btn btn-white btn-sm logbtn"></a></Link></div>
                 <div className="col"><img className="mb-4" alt="" width="158" src="/images/logo.png" /></div>
                 <div className="col"></div>
               </div>

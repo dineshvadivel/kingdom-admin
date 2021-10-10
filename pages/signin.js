@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { login, storeUser } from '../services/auth.service';
+import { create, storeUser } from '../services/auth.service';
 import Layout from "../components/Layout";
 import { UserContext } from '../context/UserContext';
 import { Form, FormControl, Button, FormLabel, FormGroup } from 'react-bootstrap'
@@ -25,13 +25,12 @@ export default function Home() {
   const onSubmit = async (data) => {
     Notiflix.Loading.pulse('Loading...');
     try {
-      const response = await login(data);
+      const response = await create(data);
       console.log(response);
 
-      if (response.status === 200) {
-        storeUser(response.data);
-        setUser(response.data);
-        router.push('/game');
+      if (response.status === 201) {
+        Notiflix.Notify.success("Account Created");
+        router.push('/');
       }
     } catch (e) {
       console.log(e);
@@ -59,11 +58,30 @@ export default function Home() {
                 <div class="col-12 text-center">
                   <h1 className="h3 mb-3 font-weight-normal ">Please sign in</h1>
                   <form onSubmit={handleSubmit(onSubmit)}>
+
                     <div className="form-group mb-4">
                       <label className=" mb-2">
                         <strong>Username</strong>
                       </label>
-                      <input type="username" className="mr-sm-2 custom-field custom" placeholder="E.g John123" {...register('username', {
+                      <input type="text" className="mr-sm-2 custom-field custom" placeholder="E.g John123" {...register('username', {
+                        required:
+                          true
+                      })} />
+                    </div>
+                    <div className="form-group mb-4">
+                      <label className=" mb-2">
+                        <strong>First Name</strong>
+                      </label>
+                      <input type="username" className="mr-sm-2 custom-field custom" placeholder="E.g John123" {...register('firstName', {
+                        required:
+                          true
+                      })} />
+                    </div>
+                    <div className="form-group mb-4">
+                      <label className=" mb-2">
+                        <strong>Last Name</strong>
+                      </label>
+                      <input type="username" className="mr-sm-2 custom-field custom" placeholder="E.g John123" {...register('lastName', {
                         required:
                           true
                       })} />
@@ -72,22 +90,21 @@ export default function Home() {
                       <label className="mb-2">
                         <strong>Password</strong>
                       </label>
-                      <input type="password" className="mr-sm-2 custom-field custom" placeholder="Password" {...register('password', {
+                      <input type="password" autoComplete="off" className="mr-sm-2 custom-field custom" placeholder="Password" {...register('password', {
                         required: true
                       })} />
                     </div>
                     <div className="text-center">
-                      <button type="submit" className="btn-lg btn-block custom-btn">
+                      <button type="submit" className="btn-lg btn-block createLogin">
 
                       </button>
                     </div>
+
+                    <div className="text-center mt-3">
+                      <Link href="/"><a className="btn backto"></a></Link>
+                    </div>
                   </form>
                 </div>
-                <div class="col-12 mt-3 text-white text-center">
-                      
-                        <Link href="/signin"><a className="btn createAcc"></a></Link>
-                     
-                  </div>
               </div>
 
             </div>

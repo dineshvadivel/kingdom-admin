@@ -227,3 +227,26 @@ a:hover{
   cursor: pointer;
   color:rgb(255, 255, 255)
 }
+
+.createAcc{
+  background: url('/images/newAcc.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+
+.createLogin{
+  background: url('/images/create.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+.backto{
+  background: url('/images/backtologin.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
