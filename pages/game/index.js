@@ -57,7 +57,7 @@ export default function Game(props) {
   return (
     <div className="App lay" style={{ width: width, height: height }}>
       <div className="container-md  text-white">
-        <div className="main">
+        <div class="Background">
           <Layout className="">
             <div className="topBar">
               <div className="row ">

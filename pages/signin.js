@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <div className="App lay" style={{ width: width, height: height }}>
       <div className="container-md text-white">
-        <main className="">
+      <div class="Background">
           <Layout className="">
             <div className="topBar mb-3">
               <div className="row ">
@@ -109,7 +109,7 @@ export default function Home() {
 
             </div>
           </Layout>
-        </main>
+        </div>
 
       </div> </div>
   )

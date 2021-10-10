@@ -97,8 +97,10 @@ Button {
   outline: none !important;
   box-shadow: none !important;
 } 
-
-.main{
+.container-md{
+  padding: 0px;
+}
+.Background{
   text-align: center;
   justify-content: center;
 }
@@ -257,7 +259,11 @@ a:hover{
   background-position: 100% 100%,bottom,100% 100%;
   background-size: contain,100%,cover;
 }
-.App {
+.App, .Background {
   height: 100vh;
   overflow: auto;
+}
+
+.Background {
+  background-color: rgba(52,2,134,.4);
 }

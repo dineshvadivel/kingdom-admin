@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="App lay" style={{ width: width, height: height }}>
       <div className="container-md  text-white">
-
+        <div class="Background">
           <Layout className="">
             <div className="topBar mb-3">
               <div className="row ">
@@ -84,16 +84,16 @@ export default function Home() {
                   </form>
                 </div>
                 <div class="col-12 mt-3 text-white text-center">
-                      
-                        <Link href="/signin"><a className="btn createAcc"></a></Link>
-                     
-                  </div>
+
+                  <Link href="/signin"><a className="btn createAcc"></a></Link>
+
+                </div>
               </div>
 
             </div>
           </Layout>
 
-
+        </div>
       </div> </div>
   )
 }

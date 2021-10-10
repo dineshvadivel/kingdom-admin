@@ -129,8 +129,8 @@ export default function Details(props) {
 
     return (
         <div className="App lay" style={{ width: width, height: height }}>
-            <div className="container-md  text-white">
-                <div className="main">
+            <div className="container-md  text-white" >
+                <div className="Background">
                     <Layout className="">
                         <div className="topBar">
                             <div className="row ">
