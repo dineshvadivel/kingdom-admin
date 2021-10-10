@@ -1,21 +1,19 @@
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
+const env = 'production'
 export const BASE_URL = () => {
-  if (publicRuntimeConfig.env === 'development') {
+  if (env === 'development') {
     return 'http://localhost:3050';
   }
   return 'https://api.kingdom.higglerslab.com';
 };
 
 export const APP_URL = () => {
-  if (publicRuntimeConfig.env === 'development') {
+  if (env === 'development') {
     return 'http://localhost:3000';
   }
-  if (publicRuntimeConfig.env === 'qa') {
-    return 'https://askurdoctor.higglerslab.com';
-  }
-  return 'https://api.askurdoctor.com';
+  return 'https://kingdom.higglerslab.com';
 };
 
 

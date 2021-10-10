@@ -51,34 +51,34 @@ export default function Home() {
   }
   const leaderBoard = () => {
     if (ld) {
-        return ld.map((item, i) => {
-            console.log(item);
-            return (
-                <div className="card text-white blackOp mb-3 ">
-                    <div className="row ">
-                        <div className="col">
-                            {item.gameName}
-                        </div>
-
-                        <div className="col">
-                        {item.totalWealth}
-                        </div>
-                    </div></div>
-            )
-        });
-    } else {
+      return ld.map((item, i) => {
+        console.log(item);
         return (
-            <div className="card blackOp mb-3 opacity-25">
-                <div className="row text-white">
-                    <div className="col">
-                        No details available
-                    </div>
+          <div className="card text-white blackOp mb-3 ">
+            <div className="row ">
+              <div className="col">
+                {item.gameName}
+              </div>
 
-                </div>
-            </div>
+              <div className="col">
+                {item.totalWealth}
+              </div>
+            </div></div>
         )
+      });
+    } else {
+      return (
+        <div className="card blackOp mb-3 opacity-25">
+          <div className="row text-white">
+            <div className="col">
+              No details available
+            </div>
+
+          </div>
+        </div>
+      )
     }
-}
+  }
   const loadFeed = () => {
     if (d && d) {
       return d.map((item, i) => {
@@ -113,13 +113,13 @@ export default function Home() {
 
             <div className="row  mt-3">
               <div class="col text-center">
-                {sd? `Lumber ${sd.lumber}`: 0}
+                {sd ? `Lumber ${sd.lumber}` : 0}
               </div>
               <div class="col text-center">
-                {sd? `Iron ${sd.iron}`: 0}
+                {sd ? `Iron ${sd.iron}` : 0}
               </div>
               <div class="col text-center">
-              {sd? `Wealth ${sd.totalWealth}`: 0}
+                {sd ? `Wealth ${sd.totalWealth}` : 0}
               </div>
             </div>
             <div className="login-wrap mt-4">
@@ -155,7 +155,7 @@ export default function Home() {
               </div>
             </div>
             <h3 className="mt-3">LeaderBoard</h3>
-                        {leaderBoard()}
+            {leaderBoard()}
           </Layout>
         </main>
 
