@@ -178,7 +178,7 @@ export default function Details(props) {
                                             }}></a>
                                         </div>
                                     </div> : null}
-                                {data && data.status === 'STARTED' && data.currentRound <= data.totalRound && sInfo && sInfo.count == data.participants.length ?
+                                {data && data.status === 'STARTED' && data.currentRound == data.totalRound && sInfo && sInfo.count == data.participants.length ?
                                     <div className="row ">
                                         <div className="col">
                                             <a className="btn btn-primary cmpbtn" onClick={(e) => {
