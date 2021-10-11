@@ -144,7 +144,7 @@ export default function Details(props) {
                         <h3 className="mt-3">Game Detail</h3>
                         <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4" style={{ padding: '10px' }}>
                             <div className="col"> <span>Game Url</span><br />
-                                <a href={`https://kingdom.higglerslab.com/${id}`} target="_blank" className="text-sm link">{`https://kingdom.higglerslab.com/${id}`}</a>
+                                <a href={`https://kingdom-99f01.web.app/${id}`} target="_blank" className="text-sm link">{`https://kingdom-99f01.web.app/${id}`}</a>
                             </div>
                         </div>
 
