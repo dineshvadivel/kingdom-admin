@@ -26,6 +26,13 @@ export default function rx(props) {
 
 
     useEffect(() => {
+        if(props.stop){
+            if(interval){
+                clearInterval(interval);
+                setT(null)
+                props.callBack('GOTO_NEXT_ROUND')
+            }
+        }
         if (!interval) {
             const interval = setInterval(() => {
                 const left = calculateTimeLeft();
@@ -39,7 +46,7 @@ export default function rx(props) {
             }, 1000);
             setT(interval)
         }
-    }, [props.ts]);
+    }, [props.ts, props.stop]);
 
     const timerComponents = [];
 

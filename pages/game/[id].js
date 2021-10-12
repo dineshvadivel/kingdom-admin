@@ -6,12 +6,17 @@ import Layout from "../../components/Layout";
 import { getGameDetail, getLeaderBooard, nextRound, start, getStats, end } from '../../services/game.service';
 import Notiflix from 'notiflix';
 import useWindowDimensions from '../../helpers/dimension';
+import { isAuthenticated } from '../../services/auth.service';
 import { SocketContext } from '../../context/socket';
 import Timer from '../../components/Timer'
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 export default function Details(props) {
     const router = useRouter();
     const [timeUp, setTimesUp] = useState(false);
+    const [stop, setStop] = useState(false);
     const [ts, setTs] = useState(0);
     const { id } = router.query;
     const { height, width } = useWindowDimensions();
@@ -26,19 +31,37 @@ export default function Details(props) {
 
     useEffect(() => {
         console.log(props)
-        socket.on('trigger', (text) => {
-            if (text.gameId)
+        socket.on('trigger', (data) => {
+            if(data.type ==="PLAYER_SUBMITTED"){
                 mutate();
-            lm();
-            sm();
+                lm();
+                sm();
+            }
+            if(data.type ==="JOIN_GAME"){
+                mutate();
+                lm();
+            }
+            if(data.type ==="NEXT_ROUND"){
+                mutate();
+                lm();
+                sm();
+            }
         });
-        socket.emit("ADD_ADMIN", 'Hello from Socket.io')
+        const user = isAuthenticated();
+        socket.emit("ADD_ADMIN", { userId: user.userId, uuid: uuidv4(), gameId:id  })
         if (data) {
             setTs(data.endOfNextRound);
         }
+        checkCompletion()
     }, [data]);
 
-
+    const checkCompletion = () => {
+        if(sInfo){
+            if(sInfo.percentage == 1){
+                setStop(true)
+            }
+        }
+    }
 
     const startGame = async () => {
         Notiflix.Loading.pulse('Loading...');
@@ -141,7 +164,12 @@ export default function Details(props) {
 
                         <h3 className="mt-3">Game Detail</h3>
                         <div className="card blackOp text-white ht-100  mb-3 pt-4 pb-4" style={{ padding: '10px', height: "auto" }}>
-                            <div className="col"> <span>Game Url</span><br />
+                            <div className="col-12">
+                            <span>Scan Me</span><br />
+                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kingdom-99f01.web.app/${id}`} style={{width:"90px", marginTop:"5px"}}/>
+                            </div>
+                            <div className="col-12 mt-4"> 
+                                <span>Game Url</span><br />
                                 <a href={`https://kingdom-99f01.web.app/${id}`} target="_blank" className="text-sm link">{`https://kingdom-99f01.web.app/${id}`}</a>
                             </div>
                         </div>
@@ -185,6 +213,7 @@ export default function Details(props) {
                                             <div class="woodbtn pt-4"><Timer
                                                 endOfRound={ts}
                                                 callBack={endOfTurn}
+                                                stop={stop}
                                             /></div>
                                         </div>
                                     </div> : <div className="row mt-4">

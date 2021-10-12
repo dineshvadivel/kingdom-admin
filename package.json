@@ -63,6 +63,7 @@
     "tailwindcss": "^2.1.1",
     "timeago-react": "^3.0.2",
     "use-socket.io-client": "^1.1.0",
+    "uuid": "^8.3.2",
     "webpack": "4.44.2"
   },
   "devDependencies": {

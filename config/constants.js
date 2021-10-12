@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
-const env = 'production'
+const env = 'development'
 export const BASE_URL = () => {
   if (env === 'development') {
     return 'http://localhost:3050';
@@ -60,4 +60,5 @@ export const ROLES = {
   USER: 'USER',
 };
 
-export const SOCKET_URL= "https://api.kingdom.higglerslab.com"
+// export const SOCKET_URL= "https://api.kingdom.higglerslab.com"
+export const SOCKET_URL= "http://localhost:3050"

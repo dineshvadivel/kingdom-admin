@@ -32,7 +32,7 @@ export default function Create(props) {
       const response = await createGame(data);
       console.log(response);
       if (response.status === 201) {
-        router.push('/game');
+        router.push(`/game/${response.data.gameId}`);
       }
     } catch (e) {
       console.log(e);
