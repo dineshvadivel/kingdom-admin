@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext';
 import Notiflix from 'notiflix';
 import useWindowDimensions from '../../helpers/dimension';
 
+
 export default function Home() {
   const router = useRouter();
   const { setUser } = useContext(UserContext);
@@ -40,11 +41,13 @@ export default function Home() {
       Notiflix.Loading.remove();
     }
   };
+
   return (
     <div className="bg lay" style={{ width: width, height: height }}>
       <div className="container-md wd-450 text-white">
         <main className="">
           <Layout className="">
+
             <div className="topBar mb-3">
               <div className="row ">
                 <div className="col"></div>
@@ -52,11 +55,11 @@ export default function Home() {
                 <div className="col"></div>
               </div>
             </div>
-
+            
             <div className="login-wrap mt-4">
 
               <div className="row  mt-3">
-                <div class="col-12 text-center">
+                <div className="col-12 text-center">
                   <h1 className="h3 mb-3 font-weight-normal ">Please sign in</h1>
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group mb-4">

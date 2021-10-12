@@ -51,7 +51,7 @@ export default function Create(props) {
           <Layout className="">
             <div className="topBar">
               <div className="row ">
-                <div className="col"><Link href="/game"><a className="btn btn-white btn-sm back"></a></Link></div>
+                <div className="col"><Link href="/game"><a className="btn  back"></a></Link></div>
                 <div className="col"><img className="mb-4" alt="" width="158" src="/images/logo.png" /></div>
                 <div className="col"></div>
               </div>

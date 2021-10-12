@@ -186,6 +186,7 @@ input:focus, textarea:focus, select:focus{
   display: inline-block;
 }
 
+
 .stbtn{
   background: url('/images/start.png') no-repeat  center !important;
   height:66px;
@@ -196,6 +197,21 @@ input:focus, textarea:focus, select:focus{
 
 .cmpbtn{
   background: url('/images/endgame.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+
+.woodbtn{
+  background: url('/images/wood.png') no-repeat  center !important;
+  height:66px;
+  width:227px;
+  border: none;
+  display: inline-block;
+}
+.next_round{
+  background: url('/images/next_round.png') no-repeat  center !important;
   height:66px;
   width:227px;
   border: none;

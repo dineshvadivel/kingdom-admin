@@ -41,7 +41,7 @@ export default function Home() {
   };
   return (
     <div className="App lay" style={{ width: width, height: height }}>
-      <div class="Background">
+      <div className="Background">
         <div className="container-md text-white">
           <Layout className="">
             <div className="topBar mb-3">
@@ -55,7 +55,7 @@ export default function Home() {
             <div className="login-wrap mt-4">
 
               <div className="row  mt-3">
-                <div class="col-12 text-center">
+                <div className="col-12 text-center">
                   <h1 className="h3 mb-3 font-weight-normal ">Please sign in</h1>
                   <form onSubmit={handleSubmit(onSubmit)}>
 

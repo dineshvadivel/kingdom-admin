@@ -7,43 +7,36 @@ import { getGameDetail, getLeaderBooard, nextRound, start, getStats, end } from 
 import Notiflix from 'notiflix';
 import useWindowDimensions from '../../helpers/dimension';
 import { SocketContext } from '../../context/socket';
-
+import Timer from '../../components/Timer'
 
 export default function Details(props) {
     const router = useRouter();
-    const [completed, setCompleted] = useState(0);
+    const [timeUp, setTimesUp] = useState(false);
+    const [ts, setTs] = useState(0);
     const { id } = router.query;
     const { height, width } = useWindowDimensions();
 
     const socket = useContext(SocketContext);
 
+
+    const { error: error, data: data, isLoading, mutate: mutate } = getGameDetail(id);
+    const { error: er, data: gameInfo, isLoading: isLd, mutate: lm } = getLeaderBooard(id);
+    const { error: sErr, data: sInfo, isLoading: sLoad, mutate: sm } = getStats(id);
+
+
     useEffect(() => {
         console.log(props)
-
         socket.on('trigger', (text) => {
             if (text.gameId)
                 mutate();
             lm();
             sm();
         });
+        if (data) {
+            setTs(data.endOfNextRound);
+        }
+    }, [data]);
 
-
-    }, []);
-
-
-    const { error, data, isLoading, mutate } = getGameDetail(id);
-    if (id && error) {
-        // Notiflix.Notify.failure(error);
-    }
-    const { error: er, data: gameInfo, isLoading: isLd, mutate: lm } = getLeaderBooard(id);
-    if (id && er) {
-        // Notiflix.Notify.failure(error);
-    }
-
-    const { error: sErr, data: sInfo, isLoading: sLoad, mutate: sm } = getStats(id);
-    if (id && er) {
-        // Notiflix.Notify.failure(error);
-    }
 
 
     const startGame = async () => {
@@ -68,6 +61,8 @@ export default function Details(props) {
             const response = await nextRound(id);
             if (response.status === 200) {
                 Notiflix.Notify.success("Next Round Started");
+                setTs(response.ts)
+                setTimesUp(false)
                 mutate()
             }
         } catch (e) {
@@ -90,10 +85,12 @@ export default function Details(props) {
             console.log(e);
             Notiflix.Notify.failure(e.response.data.message);
         } finally {
-            Notiflix.Loading.remove();
         }
     }
 
+    const endOfTurn = (state) => {
+        setTimesUp(true)
+    }
 
 
     const leaderBoard = () => {
@@ -127,6 +124,7 @@ export default function Details(props) {
         }
     }
 
+
     return (
         <div className="App lay" style={{ width: width, height: height }}>
             <div className="Background">
@@ -134,22 +132,21 @@ export default function Details(props) {
                     <Layout className="">
                         <div className="topBar">
                             <div className="row ">
-                                <div className="col"><Link href="/game"><a className="btn btn-white btn-sm back"></a></Link></div>
+                                <div className="col"><Link href="/game"><a className="btn back"></a></Link></div>
                                 <div className="col"><img className="mb-4" alt="" width="158" src="/images/logo.png" /></div>
-                                <div className="col">{data && data.currentRound < data.totalRound ? <a className="btn btn-white btn-sm next" onClick={(e) => {
-                                    nxt()
-                                }}></a> : null}</div>
+                                <div className="col"></div>
                             </div>
                         </div>
+
                         <h3 className="mt-3">Game Detail</h3>
-                        <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4" style={{ padding: '10px' }}>
+                        <div className="card blackOp text-white ht-100  mb-3 pt-4 pb-4" style={{ padding: '10px', height: "auto" }}>
                             <div className="col"> <span>Game Url</span><br />
                                 <a href={`https://kingdom-99f01.web.app/${id}`} target="_blank" className="text-sm link">{`https://kingdom-99f01.web.app/${id}`}</a>
                             </div>
                         </div>
 
                         {data && data.currentRound <= data.totalRound ?
-                            <div className="card blackOp text-white ht-100 mb-3 pt-4 pb-4">
+                            <div className="card blackOp text-white mb-3 pt-4 pb-4" style={{ height: "auto" }}>
                                 <div className="row ">
                                     <div className="col">
                                         <div className="row ">
@@ -170,6 +167,8 @@ export default function Details(props) {
                                         </div>
                                     </div>
                                 </div>
+
+
                                 {data && data.status === 'CREATED' ?
                                     <div className="row mt-1">
                                         <div className="col">
@@ -178,8 +177,24 @@ export default function Details(props) {
                                             }}></a>
                                         </div>
                                     </div> : null}
+                                {ts && !timeUp ?
+                                    <div className="row mt-4">
+                                        <div className="col">
+                                            <h4>Next Round in </h4>
+                                            <div class="woodbtn pt-4"><Timer
+                                                endOfRound={ts}
+                                                callBack={endOfTurn}
+                                            /></div>
+                                        </div>
+                                    </div> : <div className="row mt-4">
+                                        <div className="col">
+                                            {data && data.status === 'STARTED' && data.currentRound < data.totalRound ? <a className="btn  next_round" onClick={(e) => {
+                                                nxt()
+                                            }}></a> : null}
+                                        </div>
+                                    </div>}
                                 {data && data.status === 'STARTED' && data.currentRound == data.totalRound && sInfo && sInfo.count == data.participants.length ?
-                                    <div className="row ">
+                                    <div className="row mt-4">
                                         <div className="col">
                                             <a className="btn btn-primary cmpbtn" onClick={(e) => {
                                                 completeGame()
@@ -189,8 +204,10 @@ export default function Details(props) {
 
                             </div> :
                             null}
-                        <h3 className="mt-3">LeaderBoard</h3>
-                        {leaderBoard()}
+                        <div className="row mt-4">
+                            <div className="col"> <h3 className="mt-3">LeaderBoard</h3>
+                                {leaderBoard()}
+                            </div>  </div>
                     </Layout>
                 </div>
 

@@ -112,13 +112,13 @@ export default function Home() {
             </div>
 
             <div className="row  mt-3">
-              <div class="col text-center">
+              <div className="col text-center">
                 {sd ? `Lumber ${sd.lumber}` : 0}
               </div>
-              <div class="col text-center">
+              <div className="col text-center">
                 {sd ? `Iron ${sd.iron}` : 0}
               </div>
-              <div class="col text-center">
+              <div className="col text-center">
                 {sd ? `Wealth ${sd.totalWealth}` : 0}
               </div>
             </div>
@@ -126,29 +126,29 @@ export default function Home() {
               <div className="row  mt-3">
               </div>
               <div className="row  mt-3">
-                <div class=" col text-center">
+                <div className=" col text-center">
                   {loadFeed()}
                 </div>
 
               </div>
             </div>
             <div className="row  mt-3">
-              <div class="col text-center">
+              <div className="col text-center">
                 <a className="btn btn-primary" onClick={(e) => {
                   turn('BUILD_VILLAGE')
                 }}>Build Village</a>
               </div>
-              <div class="col text-center">
+              <div className="col text-center">
                 <a className="btn btn-primary" onClick={(e) => {
                   turn('BUILD_CASTLE')
                 }}>Build Castle</a>
               </div>
-              <div class="col text-center">
+              <div className="col text-center">
                 <a className="btn btn-primary" onClick={(e) => {
                   turn('TRAIN_ARMY')
                 }}>Train Army</a>
               </div>
-              <div class="col text-center">
+              <div className="col text-center">
                 <a className="btn btn-primary" onClick={(e) => {
                   showOpponents()
                 }}>Attack</a>
