@@ -32,6 +32,7 @@ export default function Details(props) {
             lm();
             sm();
         });
+        socket.emit("ADD_ADMIN", 'Hello from Socket.io')
         if (data) {
             setTs(data.endOfNextRound);
         }
@@ -172,7 +173,7 @@ export default function Details(props) {
                                 {data && data.status === 'CREATED' ?
                                     <div className="row mt-1">
                                         <div className="col">
-                                            <a className="btn btn-primary stbtn" onClick={(e) => {
+                                            <a className="btn stbtn" onClick={(e) => {
                                                 startGame()
                                             }}></a>
                                         </div>
@@ -196,7 +197,7 @@ export default function Details(props) {
                                 {data && data.status === 'STARTED' && data.currentRound == data.totalRound && sInfo && sInfo.count == data.participants.length ?
                                     <div className="row mt-4">
                                         <div className="col">
-                                            <a className="btn btn-primary cmpbtn" onClick={(e) => {
+                                            <a className="btn  cmpbtn" onClick={(e) => {
                                                 completeGame()
                                             }}></a>
                                         </div>

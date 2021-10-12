@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
-const env = 'development'
+const env = 'production'
 export const BASE_URL = () => {
   if (env === 'development') {
     return 'http://localhost:3050';
