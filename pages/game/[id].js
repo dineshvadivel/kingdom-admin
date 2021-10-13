@@ -53,9 +53,9 @@ export default function Details(props) {
         if (data) {
             setTs(data.endOfNextRound);
         }
-        if(sInfo && sInfo.percentage ===1){
-            setStop(new Date())
-        }
+        // if(sInfo && sInfo.percentage ===1){
+        //     setStop(new Date())
+        // }
     }, [data, id, sInfo]);
 
     const toggleCollapse = () => {
