@@ -18,7 +18,7 @@ export default function Details(props) {
     const [timeUp, setTimesUp] = useState(false);
     const [stop, setStop] = useState(null);
     const [ts, setTs] = useState(0);
-    const [collpase, setCollapse] = useState(false);
+    const [collpase, setCollapse] = useState(true);
     const { id } = router.query;
     const { height, width } = useWindowDimensions();
 
@@ -103,12 +103,13 @@ export default function Details(props) {
             const response = await end(id);
             if (response.status === 200) {
                 Notiflix.Notify.success("Game Completed Successfully");
-                router.push(`/game/`);
+                mutate()
             }
         } catch (e) {
             console.log(e);
             Notiflix.Notify.failure(e.response.data.message);
         } finally {
+            Notiflix.Loading.remove();
         }
     }
 
@@ -210,31 +211,41 @@ export default function Details(props) {
                                             }}></a>
                                         </div>
                                     </div> : null}
-                                {ts && !timeUp?
-                                    <div className="row mt-4">
-                                        <div className="col">
-                                            <h4>Next Round in </h4>
-                                            <div class="woodbtn pt-4"><Timer
-                                                endOfRound={ts}
-                                                callBack={endOfTurn}
-                                                stop={stop}
-                                            /></div>
-                                        </div>
-                                    </div> : <div className="row mt-4">
-                                        <div className="col">
-                                            {data && data.status === 'STARTED' && data.currentRound < data.totalRound ? <a className="btn  next_round" onClick={(e) => {
-                                                nxt()
-                                            }}></a> : null}
-                                        </div>
-                                    </div>}
-                                {data && data.status === 'STARTED' && data.currentRound == data.totalRound && sInfo && sInfo.count == data.participants.length ?
-                                    <div className="row mt-4">
-                                        <div className="col">
-                                            <a className="btn  cmpbtn" onClick={(e) => {
-                                                completeGame()
-                                            }}></a>
-                                        </div>
-                                    </div> : null}
+                                {sInfo && sInfo.percentage === 1 ?
+                                    <>
+                                        {data && data.status === 'STARTED' && data.currentRound == data.totalRound ?
+                                            <div className="row mt-4">
+                                                <div className="col">
+                                                    <a className="btn  cmpbtn" onClick={(e) => {
+                                                        completeGame()
+                                                    }}></a>
+                                                </div>
+                                            </div> : <div className="row mt-4">
+                                                <div className="col">
+                                                    {data && data.status === 'STARTED' && data.currentRound < data.totalRound ? <a className="btn  next_round" onClick={(e) => {
+                                                        nxt()
+                                                    }}></a> : null}
+                                                </div>
+                                            </div>}
+                                    </>
+                                    : <> {ts && !timeUp ?
+                                        <div className="row mt-4">
+                                            <div className="col">
+                                                <h4>Next Round in </h4>
+                                                <div class="woodbtn pt-4"><Timer
+                                                    endOfRound={ts}
+                                                    callBack={endOfTurn}
+                                                    stop={stop}
+                                                /></div>
+                                            </div>
+                                        </div> : <div className="row mt-4">
+                                            <div className="col">
+                                                {data && data.status === 'STARTED' && data.currentRound < data.totalRound ? <a className="btn  next_round" onClick={(e) => {
+                                                    nxt()
+                                                }}></a> : null}
+                                            </div>
+                                        </div>}</>}
+
 
                             </div> :
                             null}
