@@ -18,6 +18,7 @@ export default function Details(props) {
     const [timeUp, setTimesUp] = useState(false);
     const [stop, setStop] = useState(false);
     const [ts, setTs] = useState(0);
+    const [collpase, setCollapse] = useState(false);
     const { id } = router.query;
     const { height, width } = useWindowDimensions();
 
@@ -32,23 +33,23 @@ export default function Details(props) {
     useEffect(() => {
         console.log(props)
         socket.on('trigger', (data) => {
-            if(data.type ==="PLAYER_SUBMITTED"){
+            if (data.type === "PLAYER_SUBMITTED") {
                 mutate();
                 lm();
                 sm();
             }
-            if(data.type ==="JOIN_GAME"){
+            if (data.type === "JOIN_GAME") {
                 mutate();
                 lm();
             }
-            if(data.type ==="NEXT_ROUND"){
+            if (data.type === "NEXT_ROUND") {
                 mutate();
                 lm();
                 sm();
             }
         });
         const user = isAuthenticated();
-        socket.emit("ADD_ADMIN", { userId: user.userId, uuid: uuidv4(), gameId:id  })
+        socket.emit("ADD_ADMIN", { userId: user.userId, uuid: uuidv4(), gameId: id })
         if (data) {
             setTs(data.endOfNextRound);
         }
@@ -56,11 +57,15 @@ export default function Details(props) {
     }, [data]);
 
     const checkCompletion = () => {
-        if(sInfo){
-            if(sInfo.percentage == 1){
+        if (sInfo) {
+            if (sInfo.percentage == 1) {
                 setStop(true)
             }
         }
+    }
+
+    const toggleCollapse = () => {
+        setCollapse(!collpase);
     }
 
     const startGame = async () => {
@@ -163,12 +168,16 @@ export default function Details(props) {
                         </div>
 
                         <h3 className="mt-3">Game Detail</h3>
-                        <div className="card blackOp text-white ht-100  mb-3 pt-4 pb-4" style={{ padding: '10px', height: "auto" }}>
+                        <a className="btn  mb-3 blackOp text-white fullwidthBtn" onClick={toggleCollapse}>
+                            Game Link
+                        </a>
+                        {/* className="card blackOp text-white ht-100  mb-3 pt-4 pb-4"  */}
+                        <div className={`collapse card blackOp text-white ht-100  mb-3 pt-4 pb-4 ${collpase ? "show" : ""}`} style={{ padding: '10px', height: "auto" }}>
                             <div className="col-12">
-                            <span>Scan Me</span><br />
-                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kingdom-99f01.web.app/${id}`} style={{width:"90px", marginTop:"5px"}}/>
+                                <span>Scan Me</span><br />
+                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kingdom-99f01.web.app/${id}`} style={{ width: "90px", marginTop: "5px" }} />
                             </div>
-                            <div className="col-12 mt-4"> 
+                            <div className="col-12 mt-4">
                                 <span>Game Url</span><br />
                                 <a href={`https://kingdom-99f01.web.app/${id}`} target="_blank" className="text-sm link">{`https://kingdom-99f01.web.app/${id}`}</a>
                             </div>
