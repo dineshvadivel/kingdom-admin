@@ -26,6 +26,7 @@ export default function rx(props) {
 
 
     useEffect(() => {
+        console.log(props.stop)
         if(props.stop){
             if(interval){
                 clearInterval(interval);

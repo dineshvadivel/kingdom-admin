@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function Details(props) {
     const router = useRouter();
     const [timeUp, setTimesUp] = useState(false);
-    const [stop, setStop] = useState(false);
+    const [stop, setStop] = useState(null);
     const [ts, setTs] = useState(0);
     const [collpase, setCollapse] = useState(false);
     const { id } = router.query;
@@ -31,7 +31,7 @@ export default function Details(props) {
 
 
     useEffect(() => {
-        console.log(props)
+        console.log(id)
         socket.on('trigger', (data) => {
             if (data.type === "PLAYER_SUBMITTED") {
                 mutate();
@@ -53,16 +53,10 @@ export default function Details(props) {
         if (data) {
             setTs(data.endOfNextRound);
         }
-        checkCompletion()
-    }, [data]);
-
-    const checkCompletion = () => {
-        if (sInfo) {
-            if (sInfo.percentage == 1) {
-                setStop(true)
-            }
+        if(sInfo && sInfo.percentage ===1){
+            setStop(new Date())
         }
-    }
+    }, [data, id, sInfo]);
 
     const toggleCollapse = () => {
         setCollapse(!collpase);
@@ -92,6 +86,7 @@ export default function Details(props) {
                 Notiflix.Notify.success("Next Round Started");
                 setTs(response.ts)
                 setTimesUp(false)
+                setStop(null)
                 mutate()
             }
         } catch (e) {
@@ -108,7 +103,7 @@ export default function Details(props) {
             const response = await end(id);
             if (response.status === 200) {
                 Notiflix.Notify.success("Game Completed Successfully");
-                mutate()
+                router.push(`/game/`);
             }
         } catch (e) {
             console.log(e);
@@ -215,7 +210,7 @@ export default function Details(props) {
                                             }}></a>
                                         </div>
                                     </div> : null}
-                                {ts && !timeUp ?
+                                {ts && !timeUp?
                                     <div className="row mt-4">
                                         <div className="col">
                                             <h4>Next Round in </h4>
